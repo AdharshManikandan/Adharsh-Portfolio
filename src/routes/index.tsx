@@ -16,11 +16,28 @@ import {
   Github,
   Instagram,
   ArrowDown,
+  Images,
+  ZoomIn,
 } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
 import projBigData from "@/assets/project-bigdata.jpg";
 import projAbalone from "@/assets/project-abalone.jpg";
 import projAgri from "@/assets/project-agrichain.jpg";
+import proswap from "@/assets/Ticket-swap.png";
+import proenergy from "@/assets/project-enery.jpeg";
+import galAeroplane from "@/assets/gallery/Aeroplane.jpeg";
+import galCourseCompletionPic from "@/assets/gallery/course completion pic.jpeg";
+import galCourseCompletion from "@/assets/gallery/course completion.jpeg";
+import galDreamFly from "@/assets/gallery/dream fly.jpeg";
+import galGroupPhoto from "@/assets/gallery/group photo.jpeg";
+import galImages from "@/assets/gallery/images.jpeg";
+import galIntiBag from "@/assets/gallery/INTI bag.jpeg";
+import galIntiImage from "@/assets/gallery/inti image.jpeg";
+import galIntiNote from "@/assets/gallery/inti note.jpeg";
+import galInti from "@/assets/gallery/inti.jpeg";
+import galPilot from "@/assets/gallery/pilot.jpeg";
+import galSimulator2 from "@/assets/gallery/simulator 2.jpeg";
+import galSimulator from "@/assets/gallery/simulator.jpeg";
 
 export const Route = createFileRoute("/")({
   component: Portfolio,
@@ -140,7 +157,7 @@ function Portfolio() {
             ADHARSH<span className="text-foreground">.</span>
           </a>
           <div className="hidden gap-6 text-sm text-muted-foreground md:flex">
-            {["About", "Education", "Skills", "Projects", "Journey", "Contact"].map((l) => (
+            {["About", "Education", "Skills", "Projects", "Journey", "Gallery", "Contact"].map((l) => (
               <a
                 key={l}
                 href={`#${l.toLowerCase()}`}
@@ -305,7 +322,8 @@ function Portfolio() {
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
                 <a
-                  href="#"
+                  href="/Resume.pdf"
+                  download
                   className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
                 >
                   <Download className="h-4 w-4" />
@@ -327,6 +345,7 @@ function Portfolio() {
               sub: "Karpagam Academy of Higher Education",
               badge: "Bachelor",
               icon: <GraduationCap className="h-5 w-5" />,
+              url: "https://kahedu.edu.in/",
             },
             {
               years: "2025",
@@ -334,6 +353,7 @@ function Portfolio() {
               sub: "INTI International University · Malaysia",
               badge: "Global",
               icon: <Plane className="h-5 w-5" />,
+              url: "https://newinti.edu.my/",
             },
             {
               years: "Higher Secondary",
@@ -341,6 +361,7 @@ function Portfolio() {
               sub: "Score",
               badge: "73%",
               icon: <GraduationCap className="h-5 w-5" />,
+              url: "https://amritaschool.edu.in/kanyakumari",
             },
             {
               years: "Secondary School",
@@ -348,26 +369,37 @@ function Portfolio() {
               sub: "Score",
               badge: "84%",
               icon: <GraduationCap className="h-5 w-5" />,
+              url: "https://amritaschool.edu.in/kanyakumari",
             },
           ].map((e, i) => (
-            <motion.div
+            <a
               key={i}
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: i * 0.08 }}
-              className="card-hover flex flex-col rounded-2xl border border-white/10 bg-card/60 p-6 backdrop-blur-sm"
+              href={e.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
             >
-              <div className="flex items-center justify-between text-primary">
-                {e.icon}
-                <span className="rounded-full bg-primary/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-primary">
-                  {e.badge}
-                </span>
-              </div>
-              <p className="mt-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                {e.years}
-              </p>
-              <h3 className="mt-2 font-display text-2xl leading-tight">{e.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{e.sub}</p>
-            </motion.div>
+              <motion.div
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.08 }}
+                className="card-hover flex h-full flex-col rounded-2xl border border-white/10 bg-card/60 p-6 backdrop-blur-sm"
+              >
+                <div className="flex items-center justify-between text-primary">
+                  {e.icon}
+                  <span className="rounded-full bg-primary/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-primary">
+                    {e.badge}
+                  </span>
+                </div>
+                <p className="mt-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                  {e.years}
+                </p>
+                <h3 className="mt-2 font-display text-2xl leading-tight">{e.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{e.sub}</p>
+                <p className="mt-auto pt-4 text-xs text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                  Visit website ↗
+                </p>
+              </motion.div>
+            </a>
           ))}
         </div>
       </Section>
@@ -384,7 +416,7 @@ function Portfolio() {
             {
               icon: <Cpu className="h-5 w-5" />,
               title: "AI Assisted Dev",
-              items: ["ChatGPT", "Prompt Engineering", "GitHub Copilot"],
+              items: ["ChatGPT", "Prompt Engineering", "GitHub Copilot", "Claude"],
             },
             {
               icon: <Network className="h-5 w-5" />,
@@ -394,7 +426,7 @@ function Portfolio() {
             {
               icon: <Wrench className="h-5 w-5" />,
               title: "Tools",
-              items: ["Google Colab", "Lovable", "Replit", "Tableau"],
+              items: ["Google Colab", "Lovable", "Replit", "Tableau","GitHub","VSCode"],
             },
           ].map((s, i) => (
             <motion.div
@@ -463,6 +495,15 @@ function Portfolio() {
               tag: "Machine Learning",
               stack: ["Python", "Pandas", "Scikit-learn"],
               desc: "Predictive demand modelling on large-scale retail data, surfacing seasonality patterns and anomaly signals.",
+              url: "https://github.com/AdharshManikandan/Product-Demand-Forecasting",
+            },
+            {
+              img:proenergy,
+              title: "Appliances Energy Prediction",
+              tag: "Machine Learning",
+              stack: ["Python", "Pandas", "Scikit-learn"],
+              desc: "Predicting smart home appliance energy consumption using machine learning with seasonality, occupancy features, and model comparison.",
+              url: "https://github.com/AdharshManikandan/Energy-Prediction",
             },
             {
               img: projAbalone,
@@ -470,6 +511,7 @@ function Portfolio() {
               tag: "Deep Learning",
               stack: ["PyTorch", "NumPy"],
               desc: "Regression neural network estimating abalone age from morphometric features with tuned loss landscapes.",
+              url: "https://github.com/AdharshManikandan/Abalone-Age-Prediction",
             },
             {
               img: projAgri,
@@ -477,6 +519,15 @@ function Portfolio() {
               tag: "Blockchain",
               stack: ["Solidity", "Web3", "Node"],
               desc: "Transparent agriculture supply chain using immutable ledgers — provenance from farm to consumer.",
+              url: "https://agrichain-f9d47.web.app",
+            },
+            {
+              img: proswap,
+              title: "Ticket-Swap-India",
+              tag: "Web Development",
+              stack: ["React", "Node.js", "Web3.js"],
+              desc: "Turn unused travel tickets into cash by connecting with travelers looking for last-minute bookings.",
+              url: "https://ticket-swap-india.lovable.app/",
             },
           ].map((p, i) => (
             <motion.article
@@ -511,9 +562,14 @@ function Portfolio() {
                     </span>
                   ))}
                 </div>
-                <button className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-transform hover:translate-x-1">
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-transform hover:translate-x-1"
+                >
                   View Project <ArrowUpRight className="h-4 w-4" />
-                </button>
+                </a>
               </div>
             </motion.article>
           ))}
@@ -598,6 +654,11 @@ function Portfolio() {
         </div>
       </Section>
 
+      {/* GALLERY */}
+      <Section id="gallery" kicker="06 / Events & Moments" title="GALLERY">
+        <GallerySection />
+      </Section>
+
       {/* CONTACT */}
       <section id="contact" className="px-4 py-24 sm:px-8">
         <div className="mx-auto max-w-[1200px]">
@@ -605,7 +666,7 @@ function Portfolio() {
             {...fadeUp}
             className="rounded-3xl border border-white/10 bg-card/60 p-8 backdrop-blur-sm sm:p-14"
           >
-            <p className="text-xs uppercase tracking-[0.3em] text-primary">06 / Reach Out</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-primary">07 / Reach Out</p>
             <h2 className="mt-3 font-display text-6xl sm:text-7xl md:text-[9rem]">
               LET'S <span className="text-primary">TALK.</span>
             </h2>
@@ -622,7 +683,8 @@ function Portfolio() {
                 <ArrowUpRight className="h-6 w-6 text-primary" />
               </a>
               <a
-                href="#"
+                href="/Resume.pdf"
+                download
                 className="card-hover flex items-center justify-between rounded-2xl border border-white/10 bg-background/40 p-6"
               >
                 <div>
@@ -635,17 +697,15 @@ function Portfolio() {
 
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
               {[
-                { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", handle: "/in/adharsh" },
-                { icon: <Github className="h-5 w-5" />, label: "GitHub", handle: "@adharsh" },
-                {
-                  icon: <Instagram className="h-5 w-5" />,
-                  label: "Instagram",
-                  handle: "@adharsh",
-                },
+                { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", handle: "in/adharsh-manikandan", url: "https://www.linkedin.com/in/adharsh-manikandan" },
+                { icon: <Github className="h-5 w-5" />, label: "GitHub", handle: "@AdharshManikandan", url: "https://github.com/AdharshManikandan" },
+                { icon: <Instagram className="h-5 w-5" />, label: "Instagram", handle: "@adharsh__manikandan", url: "https://www.instagram.com/adharsh__manikandan/" },
               ].map((s) => (
                 <a
                   key={s.label}
-                  href="#"
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="card-hover flex items-center gap-4 rounded-2xl border border-white/10 bg-background/40 p-5"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
@@ -676,6 +736,160 @@ function Portfolio() {
         </div>
       </footer>
     </div>
+  );
+}
+
+const galleryPhotos = [
+  { src: galPilot,              caption: "Pilot" },
+  { src: galGroupPhoto,         caption: "Group Photo" },
+  { src: galSimulator,          caption: "Simulator Session" },
+  { src: galDreamFly,           caption: "Dream Fly" },
+  { src: galIntiImage,          caption: "INTI University" },
+  { src: galCourseCompletionPic,caption: "Course Completion" },
+  { src: galAeroplane,          caption: "Aeroplane" },
+  { src: galInti,               caption: "INTI Campus" },
+  { src: galSimulator2,         caption: "Simulator Session 2" },
+  { src: galCourseCompletion,   caption: "Completion Ceremony" },
+  { src: galIntiBag,            caption: "INTI – Bag" },
+  { src: galImages,             caption: "Event Highlights" },
+  { src: galIntiNote,           caption: "INTI – Notes" },
+];
+
+function GallerySection() {
+  const [open, setOpen]   = useState(false);
+  const [active, setActive] = useState<number | null>(null);
+
+  return (
+    <>
+      {/* ── Folder card ─────────────────────────────────────────── */}
+      <motion.div {...fadeUp}>
+        <button
+          onClick={() => setOpen((o) => !o)}
+          className="group w-full rounded-2xl border border-white/10 bg-card/60 backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-card/80"
+          aria-expanded={open}
+        >
+          {/* folder tab */}
+          <div className="flex items-center gap-4 px-6 py-5">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary transition-colors group-hover:bg-primary/25">
+              <Images className="h-5 w-5" />
+            </div>
+            <div className="flex-1 text-left">
+              <p className="font-display text-2xl tracking-wide">Event Photos</p>
+              <p className="text-xs text-muted-foreground">{galleryPhotos.length} photos · click to {open ? "collapse" : "expand"}</p>
+            </div>
+            {/* animated chevron */}
+            <motion.span
+              animate={{ rotate: open ? 180 : 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-muted-foreground group-hover:border-primary/40 group-hover:text-primary"
+            >
+              ▾
+            </motion.span>
+          </div>
+
+          {/* folder bottom strip — only visible when collapsed */}
+          {!open && (
+            <div
+              className="mx-6 mb-5 grid gap-1.5"
+              style={{ gridTemplateColumns: "repeat(4, 1fr)" }}
+            >
+              {galleryPhotos.slice(0, 4).map((p, i) => (
+                <div
+                  key={i}
+                  className="aspect-square overflow-hidden rounded-lg opacity-50 group-hover:opacity-70 transition-opacity"
+                >
+                  <img src={p.src} alt="" className="h-full w-full object-cover" />
+                </div>
+              ))}
+            </div>
+          )}
+        </button>
+
+        {/* ── Expanded photo grid ───────────────────────────────── */}
+        <motion.div
+          initial={false}
+          animate={open ? { height: "auto", opacity: 1, marginTop: 16 } : { height: 0, opacity: 0, marginTop: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          style={{ overflow: "hidden" }}
+        >
+          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {galleryPhotos.map((photo, i) => (
+              <motion.button
+                key={i}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.04, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                onClick={() => setActive(i)}
+                className="group relative aspect-square overflow-hidden rounded-xl border border-white/10 bg-card/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.caption}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                {/* hover overlay */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-background/70 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                  <ZoomIn className="h-5 w-5 text-primary" />
+                  <span className="px-2 text-center text-[11px] font-semibold text-foreground">
+                    {photo.caption}
+                  </span>
+                </div>
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* ── Lightbox ─────────────────────────────────────────────── */}
+      {active !== null && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 p-4 backdrop-blur-md"
+          onClick={() => setActive(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-card shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={galleryPhotos[active].src}
+              alt={galleryPhotos[active].caption}
+              className="max-h-[75vh] w-full object-contain"
+            />
+            <div className="flex items-center justify-between border-t border-white/10 px-6 py-4">
+              <div className="flex items-center gap-4">
+                {/* prev */}
+                <button
+                  onClick={() => setActive((a) => (a! - 1 + galleryPhotos.length) % galleryPhotos.length)}
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                  aria-label="Previous"
+                >‹</button>
+                <p className="font-display text-xl">{galleryPhotos[active].caption}</p>
+                {/* next */}
+                <button
+                  onClick={() => setActive((a) => (a! + 1) % galleryPhotos.length)}
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                  aria-label="Next"
+                >›</button>
+              </div>
+              <span className="text-xs text-muted-foreground">
+                {active + 1} / {galleryPhotos.length}
+              </span>
+            </div>
+            <button
+              onClick={() => setActive(null)}
+              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-background/70 text-muted-foreground backdrop-blur-sm transition-colors hover:text-primary"
+              aria-label="Close"
+            >✕</button>
+          </motion.div>
+        </motion.div>
+      )}
+    </>
   );
 }
 
