@@ -109,3 +109,80 @@
   0%, 100% { box-shadow: 0 0 20px oklch(0.72 0.19 46 / 0.4); }
   50% { box-shadow: 0 0 40px oklch(0.72 0.19 46 / 0.7); }
 }
+
+/* ── Custom cursor ─────────────────────────────────────────────── */
+/* Hide on touch devices — the @media query below re-shows native cursor */
+@media (pointer: fine) {
+  body { cursor: none; }
+  a, button, [role="button"], input, textarea, select, label { cursor: none; }
+}
+
+#cursor-dot,
+#cursor-ring {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  z-index: 9999;
+  will-change: transform;
+  /* GPU-composited — won't cause repaints on scroll */
+}
+
+#cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: oklch(0.98 0 0);
+  transition: background 0.2s ease, width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+}
+
+#cursor-ring {
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border: 1.5px solid oklch(0.98 0 0 / 60%);
+  background: transparent;
+  transition:
+    width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease,
+    background 0.25s ease,
+    opacity 0.3s ease;
+}
+
+/* Pointer state — clickable elements */
+body.cursor-pointer #cursor-dot {
+  background: oklch(0.72 0.19 46); /* brand orange */
+}
+body.cursor-pointer #cursor-ring {
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+  border-color: oklch(0.72 0.19 46 / 80%);
+  background: oklch(0.72 0.19 46 / 8%);
+}
+
+/* Text state — inputs */
+body.cursor-text #cursor-dot {
+  width: 2px;
+  height: 20px;
+  margin: -10px 0 0 -1px;
+  border-radius: 1px;
+  background: oklch(0.72 0.19 46);
+}
+body.cursor-text #cursor-ring {
+  opacity: 0;
+}
+
+/* Hide both when cursor leaves the window */
+body.cursor-out #cursor-dot,
+body.cursor-out #cursor-ring {
+  opacity: 0;
+}
+
+/* On touch/coarse-pointer devices, hide the custom cursor elements entirely */
+@media (pointer: coarse) {
+  #cursor-dot, #cursor-ring { display: none; }
+}
