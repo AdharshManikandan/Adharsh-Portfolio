@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { CustomCursor } from "../components/CustomCursor";
+import { CursorTrail } from "../components/CursorTrail";
 
 function NotFoundComponent() {
   return (
@@ -134,7 +134,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <CustomCursor />
+      <CursorTrail />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
